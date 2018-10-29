@@ -1,0 +1,15 @@
+#生产环境配置
+server:
+  port: 8083
+
+
+#属性配置
+#通过@Value使用配置属性
+#配置中无需关心参数类型
+capSize: B
+age: 18
+
+#通过分组形式配置
+girl:
+  capSize: F
+  age: 20
