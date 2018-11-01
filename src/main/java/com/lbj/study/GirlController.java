@@ -28,14 +28,14 @@ public class GirlController {
      * @return
      */
     @PostMapping(value = "/girls")
-    public void girlAdd(@RequestParam("cupSize") String cupSize,
+    public Girl girlAdd(@RequestParam("cupSize") String cupSize,
                         @RequestParam("age") Integer age){
         Girl girl = new Girl();
 
         girl.setAge(age);
         girl.setCupSize(cupSize);
 
-        girlRepository.save(girl);
+        return girlRepository.save(girl);
     }
 
     /**
@@ -44,9 +44,10 @@ public class GirlController {
      * @return
      */
     @GetMapping(value = "/girlid/{id}")
-    public Girl girlById(@PathVariable("id") Integer id){
+    public Girl girlsid(@PathVariable("id") Integer id){
 
-        return girlRepository.getOne(2);
+        //新版本2.0.4release中更新，
+        return girlRepository.findById(id).get();
     }
 
     /**
@@ -55,7 +56,7 @@ public class GirlController {
      * @param cupSize
      * @param age
      */
-    @PutMapping(value = "/girlid/{id}")
+    @PostMapping(value = "/girlid/{id}")
     public void girlUpdate(@PathVariable("id") Integer id,
                            @RequestParam("cupSize") String cupSize,
                            @RequestParam("age") Integer age){
@@ -82,7 +83,7 @@ public class GirlController {
      * @param age
      * @return
      */
-    @GetMapping(value = "/girlid/{age}")
+    @GetMapping(value = "/girlid/age/{age}")
     public List<Girl> girlListByAge(@PathVariable("age") Integer age){
         return girlRepository.getGirlsByAge(age);
     }
