@@ -1,4 +1,4 @@
-package com.lbj.study;
+package com.lbj.study.Cotroller;
 
 /*
 *传统注解@Controller

@@ -1,9 +1,13 @@
-package com.lbj.study;
+package com.lbj.study.Cotroller;
 
+import com.lbj.study.Girl;
+import com.lbj.study.GirlRepository;
+import com.lbj.study.Service.GirlServiece;
 import com.sun.javafx.iio.gif.GIFDescriptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -11,6 +15,9 @@ public class GirlController {
 
     @Autowired
     private GirlRepository girlRepository;
+
+    @Autowired
+    private GirlServiece girlServiece;
 
     /**
      * 获取女生列表
@@ -86,5 +93,13 @@ public class GirlController {
     @GetMapping(value = "/girlid/age/{age}")
     public List<Girl> girlListByAge(@PathVariable("age") Integer age){
         return girlRepository.getGirlsByAge(age);
+    }
+
+    /**
+     * 事务控制数据
+     */
+    @GetMapping(value = "/girls/addTwo")
+    public void addTwoGirls(){
+        girlServiece.addTwo();
     }
 }
